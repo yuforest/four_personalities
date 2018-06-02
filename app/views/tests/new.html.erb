@@ -1,0 +1,261 @@
+
+<h1>性格診断</h1>
+    
+  <% flash.each do |key, value| %>
+    <div class="flash_notice alert alert-info alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="閉じる"><span aria-hidden="true">×</span></button>
+      <%= content_tag(:div, value, class: "#{key}") %>
+    </div>
+  <% end %>
+<div id="question_space">
+  <% if !params[:nickname] %>
+    <h3>ニックネームを入力してください</h3>
+  <% end %>
+  <% if params[:nickname] && !params[:one] %>
+    <h3>1.いつも人を引っ張る役に回ることが多い</h3>
+  <% end %>
+  <% if params[:one] && !params[:two] %>
+    <h3>2.社会の規則や倫理を重視する</h3>
+  <% end %>
+  <% if params[:two] && !params[:three] %>
+    <h3>3.何かを始めるときは計画を立ててから始める</h3>
+  <% end %>
+  <% if params[:three] && !params[:four] %>
+    <h3>4.人と話すのが好きだ</h3>
+  <% end %>
+  <% if params[:four] && !params[:five] %>
+    <h3>5.協調性がある方だと思う</h3>
+  <% end %>
+  <% if params[:five] && !params[:six] %>
+    <h3>6.自分は負けず嫌いだと思う</h3>
+  <% end %>
+  <% if params[:six] && !params[:seven] %>
+    <h3>7.人からどう思われているかはかなり気になる</h3>
+  <% end %>
+  <% if params[:seven] && !params[:eight] %>
+    <h3>8.融通が利く方だ</h3>
+  <% end %>
+  <% if params[:eight] && !params[:nine] %>
+    <h3>9.予想外の出来事にも臨機応変に対応できる</h3>
+  <% end %>
+  <% if params[:nine] && !params[:ten] %>
+    <h3>10.みんなと違う意見でも自分の主張は貫く</h3>
+  <% end %>
+  <% if params[:ten] && !params[:eleven] %>
+    <h3>11.飽きっぽい性格だと思う</h3>
+  <% end %>
+  <% if params[:eleven] && !params[:twelve] %>
+    <h3>12.相手の長所によく気が付く</h3>
+  <% end %>
+  <% if params[:twelve] && !params[:thirteen] %>
+    <h3>13.他人の話をあまりじっくりと聞くのは苦手だ</h3>
+  <% end %>
+  <% if params[:thirteen] && !params[:fourteen] %>
+    <h3>14.新しいものは進んで試してみるほうだ</h3>
+  <% end %>
+  <% if params[:fourteen] && !params[:fifteen] %>
+    <h3>15.人は人だと割り切っている</h3>
+  <% end %>
+  <% if params[:fifteen] && !params[:sixteen] %>
+    <h3>16.責任感が強く人にもそれを要求する</h3>
+  <% end %>
+  <% if params[:sixteen] && !params[:seventeen] %>
+    <h3>17.言いたいことは遠慮なく言う</h3>
+  <% end %>
+  <% if params[:seventeen] && !params[:eighteen] %>
+    <h3>18.人から気に入られたいと思う</h3>
+  <% end %>
+  <% if params[:eighteen] && !params[:nineteen] %>
+    <h3>19.忍耐強いほうだと思う</h3>
+  <% end %>
+  <% if params[:nineteen] && !params[:twenty] %>
+    <h3>20.義理や人情を重視する</h3>
+  <% end %>
+  
+</div>
+
+  <% if !params[:nickname] %>
+
+  <%= form_with(url: new_test_path, local: true, id: 'nickname-form', method: :get) do |form| %>
+  
+      <%= form.text_field :nickname %>
+      <%= form.submit "送信する",  id: 'nickname-button' %>
+  
+  <% end %>
+<% end %>
+
+<% if params[:nickname] && !params[:one] %>
+    <%= link_to image_tag('/assets/maru.png', { :border => '0', :alt => '○'}), new_test_path(nickname: params[:nickname],one: "true"), class: "testbutton maru" %>
+    <%= link_to image_tag('/assets/batu.png', { :border => '0', :alt => '×'}),new_test_path(nickname: params[:nickname],one: "false"), class: "testbutton batu" %>
+<% end %>
+    
+<% if params[:one]  && !params[:two] %>
+    <%= link_to image_tag('/assets/maru.png', { :border => '0', :alt => '○'}), new_test_path(nickname: params[:nickname],one: params[:one],two: "true"),class: "testbutton maru" %>
+    <%= link_to image_tag('/assets/batu.png', { :border => '0', :alt => '×'}), new_test_path(nickname: params[:nickname],one: params[:one],two: "false"), class: "testbutton batu" %>
+<% end %>
+
+<% if params[:two]  && !params[:three] %>
+    <%= link_to image_tag('/assets/maru.png', { :border => '0', :alt => '○'}), new_test_path(nickname: params[:nickname],one: params[:one], two: params[:two], three: "true"),class: "testbutton maru" %>
+    <%= link_to image_tag('/assets/batu.png', { :border => '0', :alt => '×'}), new_test_path(nickname: params[:nickname],one: params[:one], two: params[:two], three: "false"), class: "testbutton batu" %>
+<% end %>
+    
+<% if params[:three]  && !params[:four] %>
+    <%= link_to image_tag('/assets/maru.png', { :border => '0', :alt => '○'}), new_test_path(nickname: params[:nickname],one: params[:one], two: params[:two], three: params[:three] ,four: "true"),class: "testbutton maru" %>
+    <%= link_to image_tag('/assets/batu.png', { :border => '0', :alt => '×'}), new_test_path(nickname: params[:nickname],one: params[:one] , two: params[:two], three: params[:three], four: "false"), class: "testbutton batu" %>
+<% end %>
+
+<% if params[:four]  && !params[:five] %>
+    <%= link_to image_tag('/assets/maru.png', { :border => '0', :alt => '○'}), new_test_path(nickname: params[:nickname],one: params[:one], two: params[:two], three: params[:three] ,four: params[:four], five: "true"),class: "testbutton maru" %>
+    <%= link_to image_tag('/assets/batu.png', { :border => '0', :alt => '×'}), new_test_path(nickname: params[:nickname],one: params[:one],two: params[:two], three: params[:three] ,four: params[:four], five: "false"), class: "testbutton batu" %>
+<% end %>
+
+<% if params[:five]  && !params[:six] %>
+    <%= link_to image_tag('/assets/maru.png', { :border => '0', :alt => '○'}), new_test_path(nickname: params[:nickname],one: params[:one],two: params[:two], three: params[:three], 
+                                                                                four: params[:four], five: params[:five], six: "true"),class: "testbutton maru" %>
+    <%= link_to image_tag('/assets/batu.png', { :border => '0', :alt => '×'}), new_test_path(nickname: params[:nickname],one: params[:one],two: params[:two], three: params[:three], 
+                                                                                four: params[:four], five: params[:five], six: "false"), class: "testbutton batu" %>
+<% end %>
+
+<% if params[:six]  && !params[:seven] %>
+    <%= link_to image_tag('/assets/maru.png', { :border => '0', :alt => '○'}), new_test_path(nickname: params[:nickname],one: params[:one],two: params[:two], three: params[:three], 
+                                                                                four: params[:four], five: params[:five], six: params[:six], seven: "true"),class: "testbutton maru" %>
+    <%= link_to image_tag('/assets/batu.png', { :border => '0', :alt => '×'}), new_test_path(nickname: params[:nickname],one: params[:one],two: params[:two], three: params[:three], 
+                                                                                four: params[:four], five: params[:five], six: params[:six], seven: "false"), class: "testbutton batu" %>
+<% end %>
+
+<% if params[:seven]  && !params[:eight] %>
+    <%= link_to image_tag('/assets/maru.png', { :border => '0', :alt => '○'}), new_test_path(nickname: params[:nickname],one: params[:one],two: params[:two], three: params[:three], 
+                                                                                four: params[:four], five: params[:five], six: params[:six], seven: params[:seven], eight: "true"),class: "testbutton maru" %>
+    <%= link_to image_tag('/assets/batu.png', { :border => '0', :alt => '×'}), new_test_path(nickname: params[:nickname],one: params[:one],two: params[:two], three: params[:three], 
+                                                                                four: params[:four], five: params[:five], six: params[:six], seven: params[:seven], eight: "false"), class: "testbutton batu" %>
+<% end %>
+
+<% if params[:eight]  && !params[:nine] %>
+    <%= link_to image_tag('/assets/maru.png', { :border => '0', :alt => '○'}), new_test_path(nickname: params[:nickname],one: params[:one],two: params[:two], three: params[:three], 
+                                                                                four: params[:four], five: params[:five], six: params[:six], seven: params[:seven], eight: params[:eight],
+                                                                                nine: "true"),class: "testbutton maru" %>
+    <%= link_to image_tag('/assets/batu.png', { :border => '0', :alt => '×'}), new_test_path(nickname: params[:nickname],one: params[:one],two: params[:two], three: params[:three], 
+                                                                                four: params[:four], five: params[:five], six: params[:six], seven: params[:seven], eight: params[:eight],
+                                                                                nine: "false"), class: "testbutton batu" %>
+<% end %>
+
+<% if params[:nine]  && !params[:ten] %>
+    <%= link_to image_tag('/assets/maru.png', { :border => '0', :alt => '○'}), new_test_path(nickname: params[:nickname],one: params[:one],two: params[:two], three: params[:three], 
+                                                                                four: params[:four], five: params[:five], six: params[:six], seven: params[:seven], eight: params[:eight],
+                                                                                nine: params[:nine],ten: "true"),class: "testbutton maru" %>
+    <%= link_to image_tag('/assets/batu.png', { :border => '0', :alt => '×'}), new_test_path(nickname: params[:nickname],one: params[:one],two: params[:two], three: params[:three], 
+                                                                                four: params[:four], five: params[:five], six: params[:six], seven: params[:seven], eight: params[:eight],
+                                                                                nine: params[:nine],ten: "false"), class: "testbutton batu" %>
+<% end %>
+
+<% if params[:ten]  && !params[:eleven] %>
+    <%= link_to image_tag('/assets/maru.png', { :border => '0', :alt => '○'}), new_test_path(nickname: params[:nickname],one: params[:one],two: params[:two], three: params[:three], 
+                                                                                four: params[:four], five: params[:five], six: params[:six], seven: params[:seven], eight: params[:eight],
+                                                                                nine: params[:nine],ten: params[:ten], eleven: "true"),class: "testbutton maru" %>
+    <%= link_to image_tag('/assets/batu.png', { :border => '0', :alt => '×'}), new_test_path(nickname: params[:nickname],one: params[:one],two: params[:two], three: params[:three], 
+                                                                                four: params[:four], five: params[:five], six: params[:six], seven: params[:seven], eight: params[:eight],
+                                                                                nine: params[:nine],ten: params[:ten], eleven: "false"), class: "testbutton batu" %>
+<% end %>
+
+<% if params[:eleven]  && !params[:twelve] %>
+    <%= link_to image_tag('/assets/maru.png', { :border => '0', :alt => '○'}), new_test_path(nickname: params[:nickname],one: params[:one],two: params[:two], three: params[:three], 
+                                                                                four: params[:four], five: params[:five], six: params[:six], seven: params[:seven], eight: params[:eight],
+                                                                                nine: params[:nine],ten: params[:ten], eleven: params[:eleven], twelve: "true"),class: "testbutton maru" %>
+    <%= link_to image_tag('/assets/batu.png', { :border => '0', :alt => '×'}), new_test_path(nickname: params[:nickname],one: params[:one],two: params[:two], three: params[:three], 
+                                                                                four: params[:four], five: params[:five], six: params[:six], seven: params[:seven], eight: params[:eight],
+                                                                                nine: params[:nine],ten: params[:ten], eleven: params[:eleven], twelve: "false"), class: "testbutton batu" %>
+<% end %>
+
+<% if params[:twelve]  && !params[:thirteen] %>
+    <%= link_to image_tag('/assets/maru.png', { :border => '0', :alt => '○'}), new_test_path(nickname: params[:nickname],one: params[:one],two: params[:two], three: params[:three], 
+                                                                                four: params[:four], five: params[:five], six: params[:six], seven: params[:seven], eight: params[:eight],
+                                                                                nine: params[:nine],ten: params[:ten], eleven: params[:eleven], twelve: params[:twelve], thirteen: "true"),class: "testbutton maru" %>
+    <%= link_to image_tag('/assets/batu.png', { :border => '0', :alt => '×'}), new_test_path(nickname: params[:nickname],one: params[:one],two: params[:two], three: params[:three], 
+                                                                                four: params[:four], five: params[:five], six: params[:six], seven: params[:seven], eight: params[:eight],
+                                                                                nine: params[:nine],ten: params[:ten], eleven: params[:eleven], twelve: params[:twelve], thirteen: "false"), class: "testbutton batu" %>
+<% end %>
+
+<% if params[:thirteen]  && !params[:fourteen] %>
+    <%= link_to image_tag('/assets/maru.png', { :border => '0', :alt => '○'}), new_test_path(nickname: params[:nickname],one: params[:one],two: params[:two], three: params[:three], 
+                                                                                four: params[:four], five: params[:five], six: params[:six], seven: params[:seven], eight: params[:eight],
+                                                                                nine: params[:nine],ten: params[:ten], eleven: params[:eleven], twelve: params[:twelve], thirteen: params[:thirteen],
+                                                                                fourteen: "true"),class: "testbutton maru" %>
+    <%= link_to image_tag('/assets/batu.png', { :border => '0', :alt => '×'}), new_test_path(nickname: params[:nickname],one: params[:one],two: params[:two], three: params[:three], 
+                                                                                four: params[:four], five: params[:five], six: params[:six], seven: params[:seven], eight: params[:eight],
+                                                                                nine: params[:nine],ten: params[:ten], eleven: params[:eleven], twelve: params[:twelve], thirteen: params[:thirteen],
+                                                                                fourteen: "false"), class: "testbutton batu" %>
+<% end %>
+
+<% if params[:fourteen]  && !params[:fifteen] %>
+    <%= link_to image_tag('/assets/maru.png', { :border => '0', :alt => '○'}), new_test_path(nickname: params[:nickname],one: params[:one],two: params[:two], three: params[:three], 
+                                                                                four: params[:four], five: params[:five], six: params[:six], seven: params[:seven], eight: params[:eight],
+                                                                                nine: params[:nine],ten: params[:ten], eleven: params[:eleven], twelve: params[:twelve], thirteen: params[:thirteen],
+                                                                                fourteen: params[:fourteen], fifteen: "true"),class: "testbutton maru" %>
+    <%= link_to image_tag('/assets/batu.png', { :border => '0', :alt => '×'}), new_test_path(nickname: params[:nickname],one: params[:one],two: params[:two], three: params[:three], 
+                                                                                four: params[:four], five: params[:five], six: params[:six], seven: params[:seven], eight: params[:eight],
+                                                                                nine: params[:nine],ten: params[:ten], eleven: params[:eleven], twelve: params[:twelve], thirteen: params[:thirteen],
+                                                                                fourteen: params[:fourteen], fifteen: "false"), class: "testbutton batu" %>
+<% end %>
+
+<% if params[:fifteen]  && !params[:sixteen] %>
+    <%= link_to image_tag('/assets/maru.png', { :border => '0', :alt => '○'}), new_test_path(nickname: params[:nickname],one: params[:one],two: params[:two], three: params[:three], 
+                                                                                four: params[:four], five: params[:five], six: params[:six], seven: params[:seven], eight: params[:eight],
+                                                                                nine: params[:nine],ten: params[:ten], eleven: params[:eleven], twelve: params[:twelve], thirteen: params[:thirteen],
+                                                                                fourteen: params[:fourteen], fifteen: params[:fifteen], sixteen: "true"),class: "testbutton maru" %>
+    <%= link_to image_tag('/assets/batu.png', { :border => '0', :alt => '×'}), new_test_path(nickname: params[:nickname],one: params[:one],two: params[:two], three: params[:three], 
+                                                                                four: params[:four], five: params[:five], six: params[:six], seven: params[:seven], eight: params[:eight],
+                                                                                nine: params[:nine],ten: params[:ten], eleven: params[:eleven], twelve: params[:twelve], thirteen: params[:thirteen],
+                                                                                fourteen: params[:fourteen], fifteen: params[:fifteen], sixteen: "false"), class: "testbutton batu" %>
+<% end %>
+
+<% if params[:sixteen]  && !params[:seventeen] %>
+    <%= link_to image_tag('/assets/maru.png', { :border => '0', :alt => '○'}), new_test_path(nickname: params[:nickname],one: params[:one],two: params[:two], three: params[:three], 
+                                                                                four: params[:four], five: params[:five], six: params[:six], seven: params[:seven], eight: params[:eight],
+                                                                                nine: params[:nine],ten: params[:ten], eleven: params[:eleven], twelve: params[:twelve], thirteen: params[:thirteen],
+                                                                                fourteen: params[:fourteen], fifteen: params[:fifteen], sixteen: params[:sixteen], seventeen: "true"),class: "testbutton maru" %>
+    <%= link_to image_tag('/assets/batu.png', { :border => '0', :alt => '×'}), new_test_path(nickname: params[:nickname],one: params[:one],two: params[:two], three: params[:three], 
+                                                                                four: params[:four], five: params[:five], six: params[:six], seven: params[:seven], eight: params[:eight],
+                                                                                nine: params[:nine],ten: params[:ten], eleven: params[:eleven], twelve: params[:twelve], thirteen: params[:thirteen],
+                                                                                fourteen: params[:fourteen], fifteen: params[:fifteen], sixteen: params[:sixteen], seventeen: "false"), class: "testbutton batu" %>
+<% end %>
+
+<% if params[:seventeen]  && !params[:eighteen] %>
+    <%= link_to image_tag('/assets/maru.png', { :border => '0', :alt => '○'}), new_test_path(nickname: params[:nickname],one: params[:one],two: params[:two], three: params[:three], 
+                                                                                four: params[:four], five: params[:five], six: params[:six], seven: params[:seven], eight: params[:eight],
+                                                                                nine: params[:nine],ten: params[:ten], eleven: params[:eleven], twelve: params[:twelve], thirteen: params[:thirteen],
+                                                                                fourteen: params[:fourteen], fifteen: params[:fifteen], sixteen: params[:sixteen], seventeen: params[:seventeen],
+                                                                                eighteen: "true"),class: "testbutton maru" %>
+    <%= link_to image_tag('/assets/batu.png', { :border => '0', :alt => '×'}), new_test_path(nickname: params[:nickname],one: params[:one],two: params[:two], three: params[:three], 
+                                                                                four: params[:four], five: params[:five], six: params[:six], seven: params[:seven], eight: params[:eight],
+                                                                                nine: params[:nine],ten: params[:ten], eleven: params[:eleven], twelve: params[:twelve], thirteen: params[:thirteen],
+                                                                                fourteen: params[:fourteen], fifteen: params[:fifteen], sixteen: params[:sixteen], seventeen: params[:seventeen],
+                                                                                eighteen: "false"), class: "testbutton batu" %>
+<% end %>
+
+<% if params[:eighteen]  && !params[:nineteen] %>
+    <%= link_to image_tag('/assets/maru.png', { :border => '0', :alt => '○'}), new_test_path(nickname: params[:nickname],one: params[:one],two: params[:two], three: params[:three], 
+                                                                                four: params[:four], five: params[:five], six: params[:six], seven: params[:seven], eight: params[:eight],
+                                                                                nine: params[:nine],ten: params[:ten], eleven: params[:eleven], twelve: params[:twelve], thirteen: params[:thirteen],
+                                                                                fourteen: params[:fourteen], fifteen: params[:fifteen], sixteen: params[:sixteen], seventeen: params[:seventeen],
+                                                                                eighteen: params[:eighteen], nineteen: "true"),class: "testbutton maru" %>
+    <%= link_to image_tag('/assets/batu.png', { :border => '0', :alt => '×'}), new_test_path(nickname: params[:nickname],one: params[:one],two: params[:two], three: params[:three], 
+                                                                                four: params[:four], five: params[:five], six: params[:six], seven: params[:seven], eight: params[:eight],
+                                                                                nine: params[:nine],ten: params[:ten], eleven: params[:eleven], twelve: params[:twelve], thirteen: params[:thirteen],
+                                                                                fourteen: params[:fourteen], fifteen: params[:fifteen], sixteen: params[:sixteen], seventeen: params[:seventeen],
+                                                                                eighteen: params[:eighteen], nineteen: "false"), class: "testbutton batu" %>
+<% end %>
+
+<% if params[:nineteen]  && !params[:twenty] %>
+    <%= link_to image_tag('/assets/maru.png', { :border => '0', :alt => '○'}), tests_path(test: {nickname: params[:nickname],one: params[:one],two: params[:two], three: params[:three], 
+                                                                                four: params[:four], five: params[:five], six: params[:six], seven: params[:seven], eight: params[:eight],
+                                                                                nine: params[:nine],ten: params[:ten], eleven: params[:eleven], twelve: params[:twelve], thirteen: params[:thirteen],
+                                                                                fourteen: params[:fourteen], fifteen: params[:fifteen], sixteen: params[:sixteen], seventeen: params[:seventeen],
+                                                                                eighteen: params[:eighteen], nineteen: params[:nineteen], twenty: "true"}),class: "testbutton maru", method: :post %>
+    <%= link_to image_tag('/assets/batu.png', { :border => '0', :alt => '×'}), tests_path(test:{nickname: params[:nickname],one: params[:one],two: params[:two], three: params[:three], 
+                                                                                four: params[:four], five: params[:five], six: params[:six], seven: params[:seven], eight: params[:eight],
+                                                                                nine: params[:nine],ten: params[:ten], eleven: params[:eleven], twelve: params[:twelve], thirteen: params[:thirteen],
+                                                                                fourteen: params[:fourteen], fifteen: params[:fifteen], sixteen: params[:sixteen], seventeen: params[:seventeen],
+                                                                                eighteen: params[:eighteen], nineteen: params[:nineteen], twenty: "false"}), class: "testbutton batu", method: :post %>
+<% end %>
+
+
