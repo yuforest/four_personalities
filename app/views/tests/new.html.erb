@@ -1,13 +1,14 @@
-
-<h1>性格診断</h1>
-    
-  <% flash.each do |key, value| %>
+<% flash.each do |key, value| %>
     <div class="flash_notice alert alert-info alert-dismissible" role="alert">
       <button type="button" class="close" data-dismiss="alert" aria-label="閉じる"><span aria-hidden="true">×</span></button>
       <%= content_tag(:div, value, class: "#{key}") %>
     </div>
-  <% end %>
-<div id="question_space">
+<% end %>
+<header class="masthead">
+      <div class="container h-100">
+        <div class="row h-100">
+        <div class="question_container">
+              <div id="question_space"><h1>
   <% if !params[:nickname] %>
     <h3>ニックネームを入力してください</h3>
   <% end %>
@@ -71,10 +72,10 @@
   <% if params[:nineteen] && !params[:twenty] %>
     <h3>20.義理や人情を重視する</h3>
   <% end %>
-  
+  </h1>
 </div>
 
-  <% if !params[:nickname] %>
+<% if !params[:nickname] %>
 
   <%= form_with(url: new_test_path, local: true, id: 'nickname-form', method: :get) do |form| %>
   
@@ -84,6 +85,7 @@
   <% end %>
 <% end %>
 
+<div class="answer_images">
 <% if params[:nickname] && !params[:one] %>
     <%= link_to image_tag('/assets/maru.png', { :border => '0', :alt => '○'}), new_test_path(nickname: params[:nickname],one: "true"), class: "testbutton maru" %>
     <%= link_to image_tag('/assets/batu.png', { :border => '0', :alt => '×'}),new_test_path(nickname: params[:nickname],one: "false"), class: "testbutton batu" %>
@@ -257,5 +259,14 @@
                                                                                 fourteen: params[:fourteen], fifteen: params[:fifteen], sixteen: params[:sixteen], seventeen: params[:seventeen],
                                                                                 eighteen: params[:eighteen], nineteen: params[:nineteen], twenty: "false"}), class: "testbutton batu", method: :post %>
 <% end %>
+
+          
+          </div>
+          
+        </div>
+      <!--</div>-->
+      </div>
+    </header>
+
 
 
