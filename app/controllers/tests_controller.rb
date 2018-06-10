@@ -7,6 +7,16 @@ class TestsController < ApplicationController
 
   def new
     @test = Test.new
+    if session[:nickname]
+      @nickname = session[:nickname]
+    end
+    if params[:nickname] && !params[:one]
+      session[:nickname] = params[:nickname]
+    end
+    if session[:nickname] && session[:one]
+      session[:one] = params[:one]
+
+    end
     
   end
 
@@ -57,4 +67,7 @@ class TestsController < ApplicationController
   def set_test
      @test = Test.find(params[:id])
   end
+  
+
+  
 end

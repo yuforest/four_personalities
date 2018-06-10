@@ -1,6 +1,7 @@
 <% flash.each do |key, value| %>
     <div class="flash_notice alert alert-info alert-dismissible" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="閉じる"><span aria-hidden="true">×</span></button>
+      <button type="button" class="close" data-dismiss="alert"
+      aria-label="閉じる"><span aria-hidden="true">×</span></button>
       <%= content_tag(:div, value, class: "#{key}") %>
     </div>
 <% end %>
@@ -9,7 +10,8 @@
         <div class="row h-100">
         <div class="question_container">
               <div id="question_space"><h1>
-  <% if !params[:nickname] %>
+                <%= @nickname %>さんの回答
+  <% if !session[:nickname] %>
     <h3>ニックネームを入力してください</h3>
   <% end %>
   <% if params[:nickname] && !params[:one] %>
@@ -75,9 +77,10 @@
   </h1>
 </div>
 
-<% if !params[:nickname] %>
+<% if !session[:nickname] %>
 
-  <%= form_with(url: new_test_path, local: true, id: 'nickname-form', method: :get) do |form| %>
+  <%= form_with(url: new_test_path, local: true, id: 'nickname-form', 
+  method: :get) do |form| %>
   
       <%= form.text_field :nickname %>
       <%= form.submit "送信する",  id: 'nickname-button' %>
@@ -87,35 +90,64 @@
 
 <div class="answer_images">
 <% if params[:nickname] && !params[:one] %>
-    <%= link_to image_tag('/assets/maru.png', { :border => '0', :alt => '○'}), new_test_path(nickname: params[:nickname],one: "true"), class: "testbutton maru" %>
-    <%= link_to image_tag('/assets/batu.png', { :border => '0', :alt => '×'}),new_test_path(nickname: params[:nickname],one: "false"), class: "testbutton batu" %>
+    <%= link_to image_tag('/assets/maru.png', { :border => '0', :alt => '○'}),
+    new_test_path( one: "true"),
+    class: "testbutton maru" %>
+    <%= link_to image_tag('/assets/batu.png', { :border => '0', :alt => '×'}),
+    new_test_path(one: "false"),
+    class: "testbutton batu" %>
 <% end %>
     
 <% if params[:one]  && !params[:two] %>
-    <%= link_to image_tag('/assets/maru.png', { :border => '0', :alt => '○'}), new_test_path(nickname: params[:nickname],one: params[:one],two: "true"),class: "testbutton maru" %>
-    <%= link_to image_tag('/assets/batu.png', { :border => '0', :alt => '×'}), new_test_path(nickname: params[:nickname],one: params[:one],two: "false"), class: "testbutton batu" %>
+    <%= link_to image_tag('/assets/maru.png', { :border => '0', :alt => '○'}),
+    new_test_path(nickname: params[:nickname],one: params[:one],two: "true"),
+    class: "testbutton maru" %>
+    <%= link_to image_tag('/assets/batu.png', { :border => '0', :alt => '×'}), 
+    new_test_path(nickname: params[:nickname],one: params[:one],two: "false"), 
+    class: "testbutton batu" %>
 <% end %>
 
 <% if params[:two]  && !params[:three] %>
-    <%= link_to image_tag('/assets/maru.png', { :border => '0', :alt => '○'}), new_test_path(nickname: params[:nickname],one: params[:one], two: params[:two], three: "true"),class: "testbutton maru" %>
-    <%= link_to image_tag('/assets/batu.png', { :border => '0', :alt => '×'}), new_test_path(nickname: params[:nickname],one: params[:one], two: params[:two], three: "false"), class: "testbutton batu" %>
+    <%= link_to image_tag('/assets/maru.png', { :border => '0', :alt => '○'}), 
+    new_test_path(nickname: params[:nickname],one: params[:one],
+    two: params[:two], three: "true"),class: "testbutton maru" %>
+    <%= link_to image_tag('/assets/batu.png', { :border => '0', :alt => '×'}),
+    new_test_path(nickname: params[:nickname],one: params[:one],
+    two: params[:two], three: "false"), class: "testbutton batu" %>
 <% end %>
     
 <% if params[:three]  && !params[:four] %>
-    <%= link_to image_tag('/assets/maru.png', { :border => '0', :alt => '○'}), new_test_path(nickname: params[:nickname],one: params[:one], two: params[:two], three: params[:three] ,four: "true"),class: "testbutton maru" %>
-    <%= link_to image_tag('/assets/batu.png', { :border => '0', :alt => '×'}), new_test_path(nickname: params[:nickname],one: params[:one] , two: params[:two], three: params[:three], four: "false"), class: "testbutton batu" %>
+    <%= link_to image_tag('/assets/maru.png', { :border => '0', :alt => '○'}),
+    new_test_path(nickname: params[:nickname],one: params[:one],
+    two: params[:two], three: params[:three] ,four: "true"), 
+    class: "testbutton maru" %>
+    <%= link_to image_tag('/assets/batu.png', { :border => '0', :alt => '×'}),
+    new_test_path(nickname: params[:nickname],one: params[:one] ,
+    two: params[:two], three: params[:three], four: "false"),
+    class: "testbutton batu" %>
 <% end %>
 
 <% if params[:four]  && !params[:five] %>
-    <%= link_to image_tag('/assets/maru.png', { :border => '0', :alt => '○'}), new_test_path(nickname: params[:nickname],one: params[:one], two: params[:two], three: params[:three] ,four: params[:four], five: "true"),class: "testbutton maru" %>
-    <%= link_to image_tag('/assets/batu.png', { :border => '0', :alt => '×'}), new_test_path(nickname: params[:nickname],one: params[:one],two: params[:two], three: params[:three] ,four: params[:four], five: "false"), class: "testbutton batu" %>
+    <%= link_to image_tag('/assets/maru.png', { :border => '0', :alt => '○'}),
+    new_test_path(nickname: params[:nickname],one: params[:one], 
+    two: params[:two], three: params[:three] ,four: params[:four], 
+    five: "true"),class: "testbutton maru" %>
+    <%= link_to image_tag('/assets/batu.png', { :border => '0', :alt => '×'}),
+    new_test_path(nickname: params[:nickname],one: params[:one], 
+    two: params[:two], three: params[:three] ,four: params[:four], 
+    five: "false"), class: "testbutton batu" %>
 <% end %>
 
 <% if params[:five]  && !params[:six] %>
-    <%= link_to image_tag('/assets/maru.png', { :border => '0', :alt => '○'}), new_test_path(nickname: params[:nickname],one: params[:one],two: params[:two], three: params[:three], 
-                                                                                four: params[:four], five: params[:five], six: "true"),class: "testbutton maru" %>
-    <%= link_to image_tag('/assets/batu.png', { :border => '0', :alt => '×'}), new_test_path(nickname: params[:nickname],one: params[:one],two: params[:two], three: params[:three], 
-                                                                                four: params[:four], five: params[:five], six: "false"), class: "testbutton batu" %>
+    <%= link_to image_tag('/assets/maru.png', { :border => '0', :alt => '○'}),
+    new_test_path(nickname: params[:nickname],one: params[:one], 
+    two: params[:two], three: params[:three], four: params[:four],
+    five: params[:five], six: "true"),class: "testbutton maru" %>
+    <%= link_to image_tag('/assets/batu.png', { :border => '0', :alt => '×'}),
+    new_test_path(nickname: params[:nickname],one: params[:one], 
+    two: params[:two], three: params[:three], 
+    four: params[:four], five: params[:five], six: "false"), 
+    class: "testbutton batu" %>
 <% end %>
 
 <% if params[:six]  && !params[:seven] %>
