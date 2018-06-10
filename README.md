@@ -1,24 +1,40 @@
-# README
+Four Personalities
+====
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+## Description
+性格診断アプリケーションです。
+あなたの性格を4つに分類できます。
 
-* Ruby version
+## Requirement
+- Ruby 2.4.0
+- Rails 5.1.6
+- PostgreSQL 9.3.18
 
-* System dependencies
+## Function
+- 性格診断
+- 診断結果の保存
 
-* Configuration
+## Usage
+このアプリケーションを動かす場合は、まずはリポジトリを手元にクローンしてください。
 
-* Database creation
+    $ git clone git@github.com:yuforest/four_personalities.git
 
-* Database initialization
+次に、以下のコマンドで必要になる Ruby Gems をインストールします。
 
-* How to run the test suite
+    $ bundle install
+その後、データベースへのマイグレーションを実行します。
 
-* Services (job queues, cache servers, search engines, etc.)
+    $ rails db:migrate
+これで、Railsサーバーを立ち上げる準備が整っているはずです。
 
-* Deployment instructions
+    $ rails server
 
-* ...
+## Licence
+
+このアプリケーションはMITライセンスを適用しています。
+RICENSE.txtを見てください。
+
+## Author
+
+[yuforest](https://github.com/yuforest)
